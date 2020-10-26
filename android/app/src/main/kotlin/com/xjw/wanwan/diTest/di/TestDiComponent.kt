@@ -10,7 +10,7 @@ import dagger.Component
  */
 @PerActivity
 @PerFragment
-@Component() //modules = [TestDiPresenterMapper::class]
+@Component(modules = [TestDiPresenterMapper::class])
 interface TestDiComponent {
 
   fun inject(activity: TestDiActivity)

@@ -4,14 +4,33 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
+  <Button
+    android:id="@+id/btn_test_di_close"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="28dp"
+    android:text="CLOSE ACTIVITY!"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <Button
+    android:id="@+id/btn_test_di_say"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:text="SAY!"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/btn_test_di_close" />
+
   <androidx.appcompat.widget.AppCompatTextView
-    android:text="dagger2 test."
     android:id="@+id/text_dagger_test_title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="28dp"
+    android:text="dagger2 test."
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

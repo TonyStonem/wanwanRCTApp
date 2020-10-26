@@ -1,25 +1,49 @@
 package com.xjw.wanwan.diTest.view
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
+import com.xjw.library.base.BaseActivity
+import com.xjw.library.base.BaseContract
 import com.xjw.wanwan.R
+import com.xjw.wanwan.diTest.contract.TestDiContract
 import com.xjw.wanwan.diTest.di.DaggerTestDiComponent
-import com.xjw.wanwan.diTest.presenter.TestDiPresenter
 import javax.inject.Inject
 
 /**
  * Created by xjw on 2020/10/26 14:11
  */
-class TestDiActivity : AppCompatActivity() {
+class TestDiActivity : BaseActivity(), TestDiContract.View {
+
+  private val onClickListener: View.OnClickListener by lazy {
+    View.OnClickListener {
+      when (it.id) {
+        R.id.btn_test_di_close -> {
+          close()
+        }
+        R.id.btn_test_di_say -> {
+          presenter.processSayAction()
+        }
+      }
+    }
+  }
 
   @Inject
-  lateinit var presenter: TestDiPresenter
+  lateinit var presenter: TestDiContract.Presenter
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+  override fun getLayoutResId(): Int = R.layout.activity_di_test
+
+  override fun injectPresenter(): BaseContract.Presenter<*>? {
     DaggerTestDiComponent.builder().build().inject(this)
-    setContentView(R.layout.activity_di_test)
-    presenter.test()
+    return presenter
+  }
+
+  override fun start() {
+    arrayListOf<Int>(R.id.btn_test_di_say, R.id.btn_test_di_close).forEach {
+      findViewById<View>(it).setOnClickListener(onClickListener)
+    }
+  }
+
+  override fun sayHello(string: String) {
+    showToast(string)
   }
 
 }
