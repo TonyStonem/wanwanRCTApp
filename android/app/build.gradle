@@ -4,17 +4,47 @@ plugins {
 }
 
 android {
-  compileSdkVersion 30
-  buildToolsVersion "30.0.2"
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
+
+  flavorDimensions "default"
+
+  productFlavors {
+    dev {
+      applicationId rootProject.ext.debugApplicationId
+      versionNameSuffix "-debug"
+      dimension "default"
+      manifestPlaceholders = [APP_ID: rootProject.ext.debugApplicationId]
+    }
+
+    alpha {
+      dimension "default"
+      manifestPlaceholders = [APP_ID: rootProject.ext.applicationId]
+    }
+
+    beta {
+      dimension "default"
+      manifestPlaceholders = [APP_ID: rootProject.ext.applicationId]
+    }
+
+    stable {
+      dimension "default"
+      manifestPlaceholders = [APP_ID: rootProject.ext.applicationId]
+    }
+  }
 
   defaultConfig {
-    applicationId "com.xjw.wanwan"
-    minSdkVersion 21
-    targetSdkVersion 30
-    versionCode 1
-    versionName "1.0"
-
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    applicationId rootProject.ext.applicationId
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode rootProject.ext.versionCode
+    versionName rootProject.ext.versionName
+    resConfigs "zh"
+    multiDexEnabled true
+    ndk {
+      //设置支持的SO库架构
+      abiFilters 'arm64-v8a' // 'armeabi-v7a', 'armeabi' , 'x86', 'x86_64', 'arm64-v8a'
+    }
   }
 
   buildTypes {
@@ -23,6 +53,15 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
+
+  sourceSets {
+    main {
+      java.srcDirs = ['/src/main/kotlin', 'src/androidTest/kotlin/', 'src/test/kotlin/']
+      jniLibs.srcDirs = ['libs']
+      assets.srcDirs = ['src/main/assets', 'src/main/assets/']
+    }
+  }
+
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
@@ -33,15 +72,12 @@ android {
 }
 
 dependencies {
-
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation 'androidx.core:core-ktx:1.2.0'
-  implementation 'androidx.appcompat:appcompat:1.1.0'
-  implementation 'com.google.android.material:material:1.1.0'
-  implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-  testImplementation 'junit:junit:4.+'
-  androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-  implementation "com.facebook.react:react-native:+" // From node_modules
-  implementation "org.webkit:android-jsc:+"
+  implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+  implementation rootProject.ext.kotlin
+  implementation rootProject.ext.ktx
+  implementation rootProject.ext.appcompat
+  implementation rootProject.ext.material
+  implementation rootProject.ext.constraintLayout
+  implementation rootProject.ext.rct
+  implementation rootProject.ext.jsc
 }
