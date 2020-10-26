@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import com.xjw.wanwan.rct.MainRCTActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
+    text_main_app_id.text = BuildConfig.APPLICATION_ID
     checkDrawOverlaysPermission()
     arrayListOf<Int>(R.id.btn_main_open_rct_page).forEach {
       findViewById<View>(it).setOnClickListener {

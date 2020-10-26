@@ -1,6 +1,7 @@
 plugins {
   id 'com.android.application'
   id 'kotlin-android'
+  id 'kotlin-android-extensions'
 }
 
 android {
@@ -73,11 +74,5 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-  implementation rootProject.ext.kotlin
-  implementation rootProject.ext.ktx
-  implementation rootProject.ext.appcompat
-  implementation rootProject.ext.material
-  implementation rootProject.ext.constraintLayout
-  implementation rootProject.ext.rct
-  implementation rootProject.ext.jsc
+  implementation project(':base')
 }
