@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
   ext.kotlin_version = "1.4.10"
+  ext.dagger_version = "2.29.1"
   repositories {
     google()
     jcenter()
@@ -66,4 +67,7 @@ ext {
   // react native
   rct = "com.facebook.react:react-native:+"
   jsc = "org.webkit:android-jsc:+"
+  //dagger2
+  dagger2 = "com.google.dagger:dagger:$dagger_version"
+  aptDagger = "com.google.dagger:dagger-compiler:$dagger_version"
 }

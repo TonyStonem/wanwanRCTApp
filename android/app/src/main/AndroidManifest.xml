@@ -22,6 +22,10 @@
     </activity>
 
     <activity
+      android:name=".diTest.view.TestDiActivity"
+      android:launchMode="singleTop"
+      android:screenOrientation="portrait"/>
+    <activity
       android:name="com.xjw.wanwan.rct.MainRCTActivity"
       android:launchMode="singleTop"
       android:screenOrientation="portrait"
