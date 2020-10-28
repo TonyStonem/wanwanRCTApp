@@ -1,9 +1,7 @@
-plugins {
-  id 'com.android.library'
-  id 'kotlin-android'
-  id 'kotlin-android-extensions'
-  id 'kotlin-kapt'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -44,15 +42,16 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
   sourceSets {
     main {
       java.srcDirs = ['/src/main/kotlin']
       jniLibs.srcDirs = ['libs']
+      assets.srcDirs = ['src/main/assets', 'src/main/assets/']
     }
-  }
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
   }
   kotlinOptions {
     jvmTarget = '1.8'
@@ -66,16 +65,9 @@ kapt {
 }
 
 dependencies {
-  api fileTree(dir: 'libs', include: ['*.jar'])
-  api rootProject.ext.kotlin
-  api rootProject.ext.ktx
-  api rootProject.ext.appcompat
-  api rootProject.ext.material
-  api rootProject.ext.constraintLayout
-  api rootProject.ext.rct
-  api rootProject.ext.jsc
-  api rootProject.ext.dagger2
+  implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+  implementation project(':base')
+
   kapt rootProject.ext.aptDagger
-  api rootProject.ext.arouter
   kapt rootProject.ext.aptRouter
 }

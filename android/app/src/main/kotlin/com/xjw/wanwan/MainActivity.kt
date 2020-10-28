@@ -7,20 +7,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
-import com.xjw.wanwan.diTest.view.TestDiActivity
-import com.xjw.wanwan.rct.MainRCTActivity
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
+import com.xjw.base.constant.Path
 import kotlinx.android.synthetic.main.activity_main.*
 
+@Route(path = Path.Home)
 class MainActivity : AppCompatActivity() {
 
   private val onClickListener: View.OnClickListener by lazy {
     View.OnClickListener {
       when (it.id) {
+        R.id.btn_main_user_info -> {
+          ARouter.getInstance().build(Path.UserInfo).navigation()
+        }
         R.id.btn_main_open_rct_page -> {
-          startActivity(Intent(this, MainRCTActivity::class.java))
+          ARouter.getInstance().build(Path.HomeRCT).navigation()
         }
         R.id.btn_main_di_test -> {
-          startActivity(Intent(this, TestDiActivity::class.java))
+          ARouter.getInstance().build(Path.TestDi).navigation()
         }
       }
     }
@@ -33,7 +38,8 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
     text_main_app_id.text = BuildConfig.APPLICATION_ID
     checkDrawOverlaysPermission()
-    arrayListOf<Int>(R.id.btn_main_open_rct_page, R.id.btn_main_di_test).forEach {
+    arrayListOf<Int>(R.id.btn_main_open_rct_page, R.id.btn_main_di_test,
+      R.id.btn_main_user_info).forEach {
       findViewById<View>(it).setOnClickListener(onClickListener)
     }
   }

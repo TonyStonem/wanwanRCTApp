@@ -3,16 +3,19 @@ package com.xjw.wanwan.rct
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactRootView
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.facebook.react.shell.MainReactPackage
+import com.xjw.base.constant.Path
 import com.xjw.wanwan.BuildConfig
 
 /**
  * Created by xjw on 2020/10/22 15:21
  */
+@Route(path = Path.HomeRCT)
 class MainRCTActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
 
   private val rctInstanceManager: ReactInstanceManager by lazy {
@@ -57,9 +60,9 @@ class MainRCTActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
     super.onBackPressed()
   }
 
-  override fun onBackPressed() {
+  /*override fun onBackPressed() {
     rctInstanceManager.onBackPressed()
-  }
+  }*/
 
   override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
     if (keyCode == KeyEvent.KEYCODE_MENU) {

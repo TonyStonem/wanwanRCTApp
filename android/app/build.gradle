@@ -73,9 +73,29 @@ android {
   }
 }
 
+kapt {
+  arguments {
+    arg("AROUTER_MODULE_NAME", project.getName())
+  }
+}
+
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
   implementation project(':base')
 
+  def featureModules = featureModule.toString().split("\\|")
+  for (String moduleInfo : featureModules) {
+    if (moduleInfo.contains("=")) {
+      String[] nameAndEnable = moduleInfo.split("=")
+      def moduleName = nameAndEnable[0]
+      def moduleEnable = nameAndEnable[1].toInteger()
+      if (moduleEnable == 1) {
+        println "Feature Module Implementation : ${moduleName}"
+        implementation project(":${moduleName}")
+      }
+    }
+  }
+
   kapt rootProject.ext.aptDagger
+  kapt rootProject.ext.aptRouter
 }

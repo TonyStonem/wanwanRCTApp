@@ -1,4 +1,20 @@
-include ':library'
-include ':base'
-include ':app'
-rootProject.name = "wanwan"
+def baseModules = baseModule.toString().split("\\|")
+for (String moduleName : baseModules) {
+  println("Base Module Include: $moduleName")
+  include ":${moduleName}"
+}
+
+def featureModules = featureModule.toString().split("\\|")
+for (String moduleInfo : featureModules) {
+  println("Feature Module: $moduleInfo")
+  if (moduleInfo.contains("=")) {
+    String[] tmpSplit = moduleInfo.split("=")
+    def moduleName = tmpSplit[0]
+    def moduleEnable = tmpSplit[1].toInteger()
+    if (moduleEnable == 1) {
+      include ":${moduleName}"
+    }
+  }
+}
+
+rootProject.name = "wanwanRCTApp"

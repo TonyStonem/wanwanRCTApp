@@ -60,9 +60,16 @@ android {
   }
 }
 
+kapt {
+  arguments {
+    arg("AROUTER_MODULE_NAME", project.getName())
+  }
+}
+
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
   api project(':library')
 
   kapt rootProject.ext.aptDagger
+  kapt rootProject.ext.aptRouter
 }

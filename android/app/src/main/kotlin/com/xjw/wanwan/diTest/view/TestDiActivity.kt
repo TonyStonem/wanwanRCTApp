@@ -1,6 +1,8 @@
 package com.xjw.wanwan.diTest.view
 
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.xjw.base.constant.Path
 import com.xjw.library.base.BaseActivity
 import com.xjw.library.base.BaseContract
 import com.xjw.wanwan.R
@@ -11,6 +13,7 @@ import javax.inject.Inject
 /**
  * Created by xjw on 2020/10/26 14:11
  */
+@Route(path = Path.TestDi)
 class TestDiActivity : BaseActivity(), TestDiContract.View {
 
   private val onClickListener: View.OnClickListener by lazy {

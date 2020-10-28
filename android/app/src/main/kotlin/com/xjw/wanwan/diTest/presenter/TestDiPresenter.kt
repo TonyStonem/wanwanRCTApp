@@ -10,7 +10,7 @@ import javax.inject.Inject
 class TestDiPresenter @Inject constructor() : BasePresenter<TestDiContract.View>(),
   TestDiContract.Presenter {
 
-  private val strList: Array<String> by lazy { arrayOf("Hello", "MVP") }
+  private val strList: Array<String> by lazy { arrayOf("Hello", "Hi") }
 
   private var before = true
 
