@@ -13,9 +13,10 @@
     android:networkSecurityConfig="@xml/network_security_config"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/Theme.Wanwan">
+    android:theme="@style/AppTheme">
     <activity
       android:name="com.xjw.wanwan.SplashActivity"
+      android:theme="@style/FullScreen"
       android:launchMode="singleTop"
       android:screenOrientation="portrait">
       <intent-filter>

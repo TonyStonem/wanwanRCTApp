@@ -3,17 +3,17 @@ package com.xjw.wanwan
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.xjw.base.constant.Path
+import com.xjw.library.base.BaseActivity
+import com.xjw.library.base.BaseContract
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Route(path = Path.Home)
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
   private val onClickListener: View.OnClickListener by lazy {
     View.OnClickListener {
@@ -33,9 +33,14 @@ class MainActivity : AppCompatActivity() {
 
   private val requestCodeForPermission: Int = 0
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+  override fun getLayoutResId(): Int = R.layout.activity_main
+
+  override fun injectPresenter(): BaseContract.Presenter<*>? {
+    return null
+  }
+
+  override fun start() {
+    drawStatusBarColor(R.color.transparent)
     text_main_app_id.text = BuildConfig.APPLICATION_ID
     checkDrawOverlaysPermission()
     arrayListOf<Int>(R.id.btn_main_open_rct_page, R.id.btn_main_di_test,
@@ -55,7 +60,6 @@ class MainActivity : AppCompatActivity() {
           requestCodeForPermission)
       }
     }
-
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <item name="tag_holder_obj" type="id" />
+  <item name="tag_holder_holder" type="id" />
+  <item name="tag_holder_position" type="id" />
+  <item name="tag_adapter_index" type="id" />
+  <item name="tag_action_code" type="id" />
+  <item name="appbar" type="id" />
+  <item name="toolbar" type="id" />
+  <item name="text_title_in_toolbar" type="id" />
+  <item name="view_status_bar_placeholder" type="id" />
+  <item name="empty_view" type="id" />
+  <item name="img_in_adapter" type="id" />
+  <item name="sml_layout" type="id" />
+  <item name="vp_home_page_coupon_content" type="id" />
+</resources>
