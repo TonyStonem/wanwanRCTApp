@@ -10,6 +10,11 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.xjw.base.constant.Path
 import com.xjw.library.base.BaseActivity
 import com.xjw.library.base.BaseContract
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Route(path = Path.Home)
@@ -47,6 +52,30 @@ class MainActivity : BaseActivity() {
       R.id.btn_main_user_info).forEach {
       findViewById<View>(it).setOnClickListener(onClickListener)
     }
+    testRx()
+  }
+
+  private fun testRx() {
+    Observable.just("Tony").subscribeOn(Schedulers.newThread())
+      .observeOn(AndroidSchedulers.mainThread()).subscribe(object : Observer<String> {
+        override fun onSubscribe(d: Disposable?) {
+          println(">> onSubscribe")
+        }
+
+        override fun onNext(t: String?) {
+          t?.let {
+            println(">> onNext：$it")
+          }
+        }
+
+        override fun onError(e: Throwable?) {
+          println(">> onError")
+        }
+
+        override fun onComplete() {
+          println(">> onComplete")
+        }
+      })
   }
 
   /**

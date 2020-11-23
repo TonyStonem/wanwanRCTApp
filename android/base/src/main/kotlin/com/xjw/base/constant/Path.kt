@@ -10,6 +10,8 @@ object Path {
   const val Home = "/${GroupPath.Group.Main}/home"
   const val TestDi = "/${GroupPath.Group.Main}/testDi"
   const val HomeRCT = "/${GroupPath.Group.Main}/homeRCT"
+  const val Login = "/${GroupPath.Group.Main}/login"
+  const val Rx = "/${GroupPath.Group.Main}/rx"
 
   // user
   const val UserInfo = "/${GroupPath.Group.User}/userInfo"

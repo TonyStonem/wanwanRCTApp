@@ -74,6 +74,8 @@ dependencies {
   api rootProject.ext.constraintLayout
   api rootProject.ext.rct
   api rootProject.ext.jsc
+  api rootProject.ext.rxJava
+  api rootProject.ext.rxAndroid
   api rootProject.ext.dagger2
   kapt rootProject.ext.aptDagger
   api rootProject.ext.arouter

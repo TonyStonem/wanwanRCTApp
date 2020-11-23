@@ -64,13 +64,12 @@ ext {
   material = "com.google.android.material:material:+"
   constraintLayout = "androidx.constraintlayout:constraintlayout:+"
 
-  // react native
   rct = "com.facebook.react:react-native:+"
   jsc = "org.webkit:android-jsc:+"
-  //dagger2
   dagger2 = "com.google.dagger:dagger:$dagger_version"
   aptDagger = "com.google.dagger:dagger-compiler:$dagger_version"
-  //ARouter
   arouter = "com.alibaba:arouter-api:1.5.0"
   aptRouter = "com.alibaba:arouter-compiler:1.2.2"
+  rxJava = "io.reactivex.rxjava3:rxjava:3.0.0"
+  rxAndroid = "io.reactivex.rxjava3:rxandroid:3.0.0"
 }
